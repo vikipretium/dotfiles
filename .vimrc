@@ -1,4 +1,3 @@
-syntax on
 
 set encoding=utf-8
 set noerrorbells
@@ -7,6 +6,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set nu
+set relativenumber 
 set nowrap
 set smartcase
 set noswapfile
@@ -15,32 +15,72 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'chun-yang/auto-pairs'
+Plug 'ap/vim-css-color'
+Plug 'junegunn/vim-easy-align'
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'morhetz/gruvbox'
 Plug 'mbbill/undotree'
 Plug 'vim-utils/vim-man'
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'puremourning/vimspector'
 Plug 'szw/vim-maximizer'
-
+Plug 'mattn/emmet-vim'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install --frozen-lockfile --production',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+Plug 'turbio/bracey.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
+"color scheme
 colorscheme gruvbox
 set background=dark
+
+"Vim hexokinase
+let g:Hexokinase_highlighters = [ 'sign_column' ]
+let g:Hexokinase_highlighters = [
+            \   'virtual',
+            \   'sign_column',
+            \   'background',
+            \   'backgroundfull',
+            \   'foreground',
+            \   'foregroundfull'
+            \ ]
+let g:Hexokinase_refreshEvents = ['TextChanged','InsertLeave']
+
+let g:Hexokinase_optInPatterns = [
+            \ 'full_hex',
+            \ 'triple_hex',
+            \ 'rgb',
+            \ 'rgba',
+            \ 'hsl',
+            \ 'hsla',
+            \ 'colour_names'
+            \]
+let g:Hexokinase_highlighters = ['backgroundfull']
+let g:Hexokinase_ftEnabled = ['css', 'html' , 'javascript']
+
 
 let mapleader = " "
 let g:netrw_browse_split=2
 let g:netrw_banner = 0
 let g:netrw_winsize =25
+
+let g:user_emmet_leader_key=','
 
 "remaps
 
@@ -83,3 +123,8 @@ nmap <Leader>dj <Plug>VimspectorStepOver
 "maximize
 
 nnoremap <Leader>m :MaximizerToggle<CR>
+
+
+"--AUTOCOMPELETION--
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
