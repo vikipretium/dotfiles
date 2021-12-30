@@ -1,0 +1,4 @@
+#!/bin/bash
+export PATH=${PATH}:~/old_files/Documents/code/flutter/bin
+export CHROME_EXECUTABLE=/usr/bin/brave   
+export PATH=${PATH}:~/Android/Sdk/platform-tools/ 

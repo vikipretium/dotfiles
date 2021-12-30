@@ -1,0 +1,2 @@
+#!/bin/bash
+wal --iterative -i /home/vp/old_files/pictures/
